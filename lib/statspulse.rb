@@ -2,11 +2,13 @@ require "statspulse/version"
 
 module Statspulse
 
-  def self.ping(location, status)
+  def self.ping(key, status)
     require "net/http"
     require "uri"
 
-    uri = URI.parse("http://statspulse.com/capture/#{location}")
+    puts "GEM"
+
+    uri = URI.parse("http://statspulse.com/capture/#{key}")
 
     # Full control
     http = Net::HTTP.new(uri.host, uri.port)
@@ -14,7 +16,7 @@ module Statspulse
     request = Net::HTTP::Put.new(uri.request_uri)
     request.set_form_data({"sync" => "#{status}"})
 
-    response = http.request(request)
+    #response = http.request(request)
   end
 
 end
