@@ -2,7 +2,7 @@ require "statspulse/version"
 
 module Statspulse
 
-  def self.api(key, event, url)
+  def self.api(account, event, url)
     require "net/http"
     require "uri"
 
@@ -13,7 +13,7 @@ module Statspulse
     http = Net::HTTP.new(uri.host, uri.port)
 
     request = Net::HTTP::Post.new(uri.request_uri)
-    request.set_form_data({"key" => "#{key}", "event" => "#{event}", "url" => "#{url}"})
+    request.set_form_data({"account" => "#{account}", "event" => "#{event}", "url" => "#{url}"})
 
     response = http.request(request)
   end
